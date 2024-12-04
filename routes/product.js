@@ -53,7 +53,7 @@ router.post("/add", async function(req, res) {
 });
 
 // Sửa sản phẩm
-router.put("/edit/:id", async function(req, res) {
+router.put("/:id", async function(req, res) {
     try {
         const token = req.header("Authorization").split(' ')[1];
         if (token) {

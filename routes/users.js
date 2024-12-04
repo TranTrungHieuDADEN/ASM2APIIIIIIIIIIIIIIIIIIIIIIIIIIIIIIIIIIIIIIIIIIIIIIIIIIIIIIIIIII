@@ -5,8 +5,6 @@ var usermodel = require("../model/usermodel");
 const JWT = require('jsonwebtoken');
 const config = require("../ultil/tokenConFig");
 
-
-
 //Đăng nhập
 router.get("/all", async function(req, res) {
     var list = await userModel.find();

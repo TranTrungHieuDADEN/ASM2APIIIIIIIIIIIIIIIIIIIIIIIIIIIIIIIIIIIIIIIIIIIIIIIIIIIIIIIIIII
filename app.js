@@ -7,11 +7,11 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sinhvienRouter = require('./routes/sinhvien');
+var productRouter = require('./routes/product');
 
 const mongoose = require('mongoose');
 require('./model/usermodel');
 require('./model/category');
-require('./model/product');
 require('./model/trash');
 require('./model/sinhvien');
 
@@ -34,7 +34,7 @@ mongoose.connect('mongodb+srv://hieuuu:aoReay41WgZcjof8@cluster1.rd3d5.mongodb.n
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/sinhvien', sinhvienRouter);
-
+app.use('/product', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

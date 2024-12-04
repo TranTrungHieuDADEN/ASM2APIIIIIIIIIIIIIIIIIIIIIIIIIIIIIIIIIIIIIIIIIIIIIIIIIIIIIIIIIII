@@ -14,6 +14,7 @@ require('./model/usermodel');
 require('./model/category');
 require('./model/trash');
 require('./model/sinhvien');
+require('./model/ProductModel')
 
 var app = express();
 

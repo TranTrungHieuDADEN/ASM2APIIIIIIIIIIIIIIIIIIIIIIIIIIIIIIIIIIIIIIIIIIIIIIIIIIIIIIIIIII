@@ -53,38 +53,16 @@ router.post("/add", async function(req, res) {
 });
 
 // Sửa sản phẩm
-router.put("/:id", async function(req, res) {
+// Sửa sản phẩm
+router.put('/:id', async(req, res) => {
     try {
-        const token = req.header("Authorization").split(' ')[1];
-        if (token) {
-            JWT.verify(token, config.SECRETKEY, async function(err, id) {
-                if (err) {
-                    res.status(403).json({ "status": false, message: "Có lỗi xảy ra: " + err });
-                } else {
-                    const { id } = req.params;
-                    const { masp, tensp, gia, soluong } = req.body;
-                    const findProduct = await product.findById(id);
-
-                    if (findProduct) {
-                        findProduct.masp = masp || findProduct.masp;
-                        findProduct.tensp = tensp || findProduct.tensp;
-                        findProduct.gia = gia || findProduct.gia;
-                        findProduct.soluong = soluong || findProduct.soluong;
-
-                        await findProduct.save();
-                        res.status(200).json({ status: true, message: "Sửa sản phẩm thành công" });
-                    } else {
-                        res.status(404).json({ status: false, message: "Không tìm thấy sản phẩm" });
-                    }
-                }
-            });
-        } else {
-            res.status(401).json({ "status": false, message: "Không tìm thấy token" });
-        }
-    } catch (e) {
-        res.status(400).json({ status: false, message: "Có lỗi xảy ra" });
+        const updatedproduct = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedproduct);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
+
 
 // Xóa sản phẩm
 router.delete("/delete/:id", async function(req, res) {

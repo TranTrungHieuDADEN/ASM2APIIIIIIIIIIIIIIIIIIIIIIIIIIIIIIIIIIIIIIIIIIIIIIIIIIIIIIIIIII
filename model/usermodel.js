@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
-const user = new Schema({
-    id: { type: ObjectId }, // khóa chính
-    username:{type: String},
-    password:{type: String}
+
+const loginSchema = new Schema({
+    name: { type: String, required: true },
+    pass: { type: String, required: true },
+    age: { type: Number, required: true },
 });
-module.exports = mongoose.models.user || mongoose.model('user', user);
+
+module.exports = mongoose.models.Login || mongoose.model('Login', loginSchema);
